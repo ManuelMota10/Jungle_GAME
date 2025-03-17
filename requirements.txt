@@ -1,2 +1,2 @@
-python=3.12.1
+# Python >= 3.10
 pygame==2.6.1
