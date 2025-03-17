@@ -1,16 +1,15 @@
 class animal:
-    def __init__(self,name,strenght,position,player,can_swim=False,can_jump=False):
-        self.name=name
-        self.strenght=strenght
-        self.position=position
-        self.player=player
-        self.can_swim=can_swim
-        self.can_jump=can_jump
-    def move(self,new_position):
-        self.position=new_position
-    def can_capture(self, other):
-        if isinstance(self, rat) and isinstance(other, elephant):
-            return not self.can_swim
+    def __init__(self,name,strength,position,player,can_swim=False,can_jump=False):
+        self.name = name
+        self.strength = strength
+        self.position = position
+        self.player = player
+        self.can_swim = can_swim
+        self.can_jump = can_jump
+    def move(self,new_position): self.position = new_position
+    def can_capture(self,other,in_water=False):
+        if isinstance(self,rat) and isinstance(other,elephant):
+            return not in_water
         return self.strength >= other.strength
 class rat(animal):
     def __init__(self, position, player):
@@ -35,4 +34,4 @@ class lion(animal):
         super().__init__('Lion', 7, position, player, can_jump=True)
 class elephant(animal):
     def __init__(self, position, player):
-        super().__init__('Elephant', 6, position, player)
+        super().__init__('Elephant', 8, position, player)
