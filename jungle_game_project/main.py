@@ -78,8 +78,8 @@ def get_rank(type):
 
 def get_adjusted_rank(piece, row, col):
     # Define trap positions
-    GREEN_TRAPS = {(0, 2), (0, 4), (1, 3)}
-    RED_TRAPS = {(8, 2), (8, 4), (7, 3)}
+    RED_TRAPS = {(0, 2), (0, 4), (1, 3)}
+    GREEN_TRAPS = {(8, 2), (8, 4), (7, 3)}
     
     # Check if piece is in opponent's trap
     if piece.color == 'green' and (row, col) in RED_TRAPS:
