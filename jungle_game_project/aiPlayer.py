@@ -134,8 +134,7 @@ class AlphaBetaPlayer:
             score = -self.alpha_beta(new_board, depth-1, -beta, -alpha, next_player)
             best_score = max(best_score, score)
             alpha = max(alpha, score)
-            if alpha >= beta:
-                break  #beta cut
+            if alpha >= beta: break  #beta cut
         #store in transposition box
         self.memory_box[board_hash] = {'score': best_score, 'depth': depth}
         return best_score
