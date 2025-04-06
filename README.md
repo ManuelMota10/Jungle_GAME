@@ -1,4 +1,3 @@
-# README
 # Jungle Game (Dou Shou Qi)
 
 Implementação do jogo de tabuleiro chinês Jungle Game (Dou Shou Qi) com algoritmos de IA para o curso 
