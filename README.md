@@ -1,15 +1,12 @@
-# Jungle Game (Dou Shou Qi)
+## Jungle Game (Dou Shou Qi)
 
-Implementação do jogo de tabuleiro chinês Jungle Game (Dou Shou Qi) com algoritmos de IA para o curso 
-de Elementos de Inteligência Artificial e Ciência de Dados.
+Implementation of the Chinese board game Jungle Game (Dou Shou Qi), enhanced with AI algorithms, developed for the course Elements of Artificial Intelligence and Data Science.
 
-## Descrição
+## Description
 
-O Jungle Game é um jogo de tabuleiro estratégico para dois jogadores, onde cada jogador controla 
-8 animais com diferentes poderes e valores. O objetivo é capturar a "toca" do oponente ou capturar 
-todos os seus animais.
+Jungle Game is a strategic two-player board game where each player commands 8 animals, each with unique strengths and movement rules. The goal is to either capture the opponent’s den or eliminate all of their animals. This project features both the core mechanics of the game and intelligent agents capable of playing competitively.
 
-## Instalação
+## Instalation
 
 ```bash
 pip install -r requirements.txt
@@ -73,7 +70,7 @@ The game transitions between screens based on user input and maintains the game 
 - Uses AI player implementations from `aiPlayer.py`
 - Leverages game rules and utility functions from `utils.py`
 
-### aiPlayer
+### AiPlayer
 
 #### Overview
 `aiPlayer.py` defines three classes of AI players with increasing levels of intelligence:
