@@ -1,7 +1,7 @@
 import pygame
 import sys
 from aiPlayer import NegamaxPlayer, RandomPlayer, AlphaBetaPlayer
-from utils import get_valid_moves, RED_DEN, GREEN_DEN, RED_TRAPS, GREEN_TRAPS, WATER_CELLS, ANIMAL_RANKS, is_game_over, get_rank
+from utils import *
 
 pygame.init()
 #constants
@@ -264,18 +264,18 @@ def ai_turn():
         ai_type = green_player_type if current_player == 'green' else red_player_type
         ai_move = None
         #get AI move
-        if ai_type == 'random': ai_move = rand.get_ai_move(board, current_player, green_type=green_player_type, red_type=red_player_type)
+        if ai_type == 'random': ai_move = rand.get_ai_move(board, current_player)
         else:
             #adjust the depth for negamax and alpha-beta
             if ai_type == 'alpha-beta':
                 total_pieces = sum(1 for row in board for piece in row if piece is not None)
-                depth = 5 if total_pieces > 10 else 7
-                ai_move = ab.get_ai_move(board, current_player, depth, green_player_type, red_player_type)
+                depth = 4 if total_pieces > 10 else 6
+                ai_move = ab.get_ai_move(board, current_player, depth)
                 ab.memory_box.clear()  #clear memory to process faster
-            else: 
+            else:
                 total_pieces = sum(1 for row in board for piece in row if piece is not None)
                 depth = 3 if total_pieces > 10 else 5
-                ai_move = nega.get_ai_move(board, current_player, depth, green_player_type, red_player_type)  #negamax
+                ai_move = nega.get_ai_move(board, current_player, depth)  #negamax
         #AI moves
         if ai_move:
             from_pos, to_pos = ai_move
