@@ -112,23 +112,59 @@ The most sophisticated AI, implementing Alpha-Beta pruning (an optimization of t
 
 ##### Key Features
 
-1. **Search Depth**: Both NegamaxPlayer and AlphaBetaPlayer use a search depth parameter to limit how far ahead they look, with deeper searches providing better but slower decisions
+### AIPlayer (Base Class)
+- Common functionality for all AI implementations
+- Methods:
+  - `get_all_valid_moves()`: Collects all valid moves for a player
+  - `make_temp_move()`: Creates a temporary board state after a move
+  - `evaluate_board()`: Scores a board position based on piece values, position, and den threats
+  - `get_player_score()`: Calculates a player's score on the board, including special cases like rat vs elephant
+  - `is_den_threat()`: Evaluates how close and threatening pieces are to opponent's den
 
-2. **Board Evaluation**: Both advanced AIs use a heuristic function that considers:
-   - Piece ranks (higher-ranked pieces are worth more points)
-   - Proximity to the opponent's den (encouraging pieces to move toward winning)
+### RandomPlayer
+A basic AI that simply chooses a random valid move from all possible moves.
+- **Methods**:
+  - `get_ai_move()`: Collects all valid moves and randomly selects one
 
-3. **Transposition Table**: AlphaBetaPlayer uses a memory box (transposition table) to store previously evaluated positions, improving efficiency
+### NegamaxPlayer
+Implements the Negamax algorithm, which is a variant of the Minimax algorithm for zero-sum games.
+- **Methods**:
+  - `get_ai_move()`: Entry point that evaluates moves with a specified depth parameter
+  - `negamax()`: Recursive implementation of the Negamax algorithm
 
-4. **Random Factor**: Small random variations are added to evaluation scores to create some unpredictability and prevent deterministic play
+### AlphaBetaPlayer
+The most sophisticated AI, implementing Alpha-Beta pruning with move ordering and memory optimizations.
+- **Methods**:
+  - `__init__()`: Initializes memory_box, killer_moves, and move_hist dictionaries
+  - `get_ai_move()`: Uses iterative deepening to progressively search deeper
+  - `order_moves()`: Prioritizes moves based on captures, history, and proximity to opponent's den
+  - `alpha_beta()`: Recursive alpha-beta search algorithm with transposition table
+  - `hash_board()`: Creates a string representation of the board state for the transposition table
 
-5. **Manual Board Copying**: Both advanced AIs use manual reference copying instead of Python's deepcopy to handle Pygame objects properly
+### Key Features
 
-#### Algorithm Details
+1. **Search Depth**: Both NegamaxPlayer and AlphaBetaPlayer use a search depth parameter passed from main.py, with deeper searches for fewer pieces on board
+
+2. **Board Evaluation**: Sophisticated heuristics considering:
+   - Piece ranks and adjusted values
+   - Proximity to the opponent's den
+   - Special case handling (e.g., Rat value increases when opponent has Elephant)
+
+3. **Alpha-Beta Optimizations**:
+   - Transposition table (memory_box) to avoid re-evaluating positions
+   - Killer move heuristic to remember effective non-capture moves
+   - Move ordering based on captures, history, and den proximity
+   - Iterative deepening to find good moves quickly at shallow depths
+
+4. **Early Termination**: Alpha-Beta search can terminate early when finding a winning move
+
+### Algorithm Details
 
 - **Negamax**: A variation of minimax that uses the property that max(a,b) = -min(-a,-b) to simplify the implementation
 
-- **Alpha-Beta Pruning**: An optimization technique that reduces the number of nodes evaluated in the search tree by stopping evaluation of a move when it's determined that the move will be worse than a previously examined move
+- **Alpha-Beta Pruning**: An optimization technique that reduces the number of nodes evaluated in the search tree
+
+- **Move Ordering**: Prioritizing likely good moves to improve pruning efficiency
 
 #### Integration
 The AI players use utility functions from `utils.py` to understand valid moves and implement game rules.
