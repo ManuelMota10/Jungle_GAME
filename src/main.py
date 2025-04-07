@@ -203,14 +203,6 @@ def draw_main_menu():   #screen 1, menu screen
     play_button.rect.centerx = WIDTH//2
     play_button.draw(screen)
 
-def draw_main_menu():
-    screen.fill(BROWN)
-    title_text = title_font_large.render("Jungle Chess", True, BLACK)
-    screen.blit(title_text, title_text.get_rect(center=(WIDTH//2, HEIGHT//3)))
-    play_button.rect.centery = HEIGHT//2 + 50
-    play_button.rect.centerx = WIDTH//2
-    play_button.draw(screen)
-
 def handle_game_click(row, col):
     global selected_piece, selected_position, current_player, game_over, winner
     if game_over: return
